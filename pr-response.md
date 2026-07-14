@@ -1,3 +1,4 @@
+
 # PR Response Doc — CineLog Watchlist Feature
 
 ## AI Usage
@@ -49,3 +50,6 @@ Adds a watchlist feature — users can save films they want to watch, with dedup
    POST the same film_id again
 6. Confirm nonexistent film returns 404:
    POST a fake film_id
+<img width="1511" height="812" alt="preview" src="https://github.com/user-attachments/assets/1d60801c-fec8-4e60-8452-31881774be9c" />
+
+
