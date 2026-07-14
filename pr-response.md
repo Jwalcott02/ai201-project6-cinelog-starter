@@ -31,5 +31,22 @@
 
 **How I verified no conflict remains:** Running pytest tests/ -v first surfaced an ImportError: cannot import name 'WatchlistEntry' from 'models', confirming the class had been silently dropped during the rebase. After restoring the model and fixing the docstring/test, all 5 tests passed. I also ran git log --oneline --graph to confirm the branch history is linear with no merge commits.
 
-## PR Description
-<!-- Written at the end — feature overview, design decisions, manual testing steps -->
+## What this PR does
+Adds a watchlist feature — users can save films they want to watch, with deduplication to prevent duplicate entries, and view their watchlist sorted by date added or alphabetically.
+
+## Design decisions
+- **Default visibility**: watchlists default to public (`public=True`), since CineLog is a community film tracking app and sharing intent-to-watch supports discovery. (See Comment 4 in pr-response.md for full reasoning and the tradeoff acknowledged.)
+- **Sort order**: added a `sort` query parameter to `GET /watchlist/<user_id>` supporting `date_added` (default) and `alphabetical`, rather than picking one fixed order. (See Comment 5 for full reasoning.)
+
+## How to manually test
+1. Start the app: `python app.py`
+2. POST a film to a user's watchlist:
+   `POST /watchlist/<user_id>/add` with body `{"film_id": "<uuid>"}`
+3. View the watchlist (default date-added order):
+   `GET /watchlist/<user_id>`
+4. View alphabetically:
+   `GET /watchlist/<user_id>?sort=alphabetical`
+5. Confirm duplicate add returns 409:
+   POST the same film_id again
+6. Confirm nonexistent film returns 404:
+   POST a fake film_id
