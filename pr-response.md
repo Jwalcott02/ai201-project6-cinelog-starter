@@ -1,8 +1,7 @@
 # PR Response Doc — CineLog Watchlist Feature
 
 ## AI Usage
-<!-- Fill in at the end — how you used AI tools during this project -->
-
+   Used AI (Claude) throughout this project as a coding tutor — for explaining git/PowerShell commands, debugging test failures and a silent rebase conflict (a dropped model class), and as a sounding board to stress-test my Comment 4 and Comment 5 reasoning by asking what counterarguments a reviewer might raise. All code, tests, and design decisions were written by me.
 ## Comment 1 — Rename
 **What I did:** To follow the project's naming convention pattern changed the function save_to_watchlist to add_to_watchlist. The projects general pattern is verb to noun. 
 **How I verified:** Searched the codebase with Get-ChildItem/Select-String for remaining references to save_to_watchlist and confirmed the import and call site in routes/watchlist/watchlist.py were the only two left; updated both, re-ran the search to confirm zero matches, then ran pytest and all tests passed.
