@@ -22,8 +22,9 @@ def add_to_watchlist(user_id, film_id):
     Adds a film to a user's watchlist.
 
     Args:
-        user_id (str): UUID of the user.
-        film_id (int): ID of the film. (Note: integer — pre-refactor)
+        user_id (str): UUID of the user. # Film ID is now a UUID — refactored from integer in commit:
+        # "refactor: migrate film IDs from integer to UUID"
+        film_id (str): ID of the film.
 
     Returns:
         WatchlistEntry: The newly created entry.
